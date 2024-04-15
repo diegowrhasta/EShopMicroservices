@@ -11,8 +11,10 @@ public record UpdateProductCommand(
 
 public record UpdateProductResult(bool IsSuccess);
 
-internal class UpdateProductHandler(IDocumentSession session, ILogger<UpdateProductHandler> logger)
-    : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+internal class UpdateProductCommandHandler(
+    IDocumentSession session,
+    ILogger<UpdateProductCommandHandler> logger
+) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
     public async Task<UpdateProductResult> Handle(
         UpdateProductCommand command,
