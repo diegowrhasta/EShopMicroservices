@@ -1,20 +1,24 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var assembly = typeof(Program).Assembly;
+
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
+
+builder.Services.AddValidatorsFromAssembly(assembly);
+
 builder.Services.AddCarter(configurator: c =>
 {
-    var modules = typeof(Program)
-        .Assembly.GetTypes()
+    var modules = assembly
+        .GetTypes()
         .Where(t => t.IsAssignableTo(typeof(ICarterModule)))
         .ToArray();
     c.WithModules(modules);
 });
-builder.Services.AddMediatR(config =>
-{
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-});
-
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 builder
     .Services.AddMarten(opts =>
