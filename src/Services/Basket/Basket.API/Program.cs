@@ -15,12 +15,16 @@ builder.Services.AddCarter(configurator: c =>
     c.WithModules(modules);
 });
 
-builder.Services.AddMarten(opts =>
-{
-    opts.Connection(builder.Configuration.GetConnectionString("Database")!);
-    opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);
-    // opts.AutoCreateSchemaObjects
-}).UseLightweightSessions();
+builder
+    .Services.AddMarten(opts =>
+    {
+        opts.Connection(builder.Configuration.GetConnectionString("Database")!);
+        opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);
+        // opts.AutoCreateSchemaObjects
+    })
+    .UseLightweightSessions();
+
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 var app = builder.Build();
 
