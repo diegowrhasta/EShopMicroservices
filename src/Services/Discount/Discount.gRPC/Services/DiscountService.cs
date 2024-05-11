@@ -31,12 +31,29 @@ public class DiscountService(DiscountContext dbContext, ILogger<DiscountService>
         return coupon.Adapt<CouponModel>();
     }
 
-    public override Task<CouponModel> CreateDiscount(
+    public override async Task<CouponModel> CreateDiscount(
         CreateDiscountRequest request,
         ServerCallContext context
     )
     {
-        return base.CreateDiscount(request, context);
+        var coupon = request.Coupon.Adapt<Coupon>();
+
+        if (coupon is null)
+        {
+            throw new RpcException(
+                new Status(StatusCode.InvalidArgument, "Invalid request object")
+            );
+        }
+
+        dbContext.Coupons.Add(coupon);
+        await dbContext.SaveChangesAsync();
+
+        logger.LogInformation(
+            "Discount is successfully created. ProductName: {ProductName}",
+            coupon.ProductName
+        );
+
+        return coupon.Adapt<CouponModel>();
     }
 
     public override Task<CouponModel> UpdateDiscount(
