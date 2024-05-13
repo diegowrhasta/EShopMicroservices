@@ -6,6 +6,7 @@
 ## SQLite files
 *-shm
 *-wal
+discountdb
 
 # User-specific files
 *.rsuser

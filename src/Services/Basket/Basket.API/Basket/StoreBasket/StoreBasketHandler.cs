@@ -20,6 +20,10 @@ public class StoreBasketCommandHandler(IBasketRepository repository) : ICommandH
         CancellationToken cancellationToken
     )
     {
+        // TODO: Communicate with Discount.Grpc and calculate latest prices of products.
+
+
+        // Store basket with Marten and the Redis Cache
         await repository.StoreBasket(command.Cart, cancellationToken);
 
         return new StoreBasketResult(command.Cart.UserName);
