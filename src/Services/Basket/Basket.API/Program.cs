@@ -1,8 +1,8 @@
-using HealthChecks.UI.Client;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Application Services
 var assembly = typeof(Program).Assembly;
 
 builder.Services.AddMediatR(config =>
@@ -17,6 +17,7 @@ builder.Services.AddCarter(configurator: c =>
     c.WithModules(modules);
 });
 
+// Data Services
 builder
     .Services.AddMarten(opts =>
     {
@@ -34,10 +35,17 @@ builder.Services.AddStackExchangeRedisCache(options =>
     // options.InstanceName = "Basket";
 });
 
+// Grpc Services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
+
+// Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
-builder.Services
-    .AddHealthChecks()
+builder
+    .Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
     .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
 

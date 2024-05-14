@@ -11,3 +11,5 @@ global using Basket.API.Exceptions;
 global using Basket.API.Data;
 global using BuildingBlocks.Exceptions.Handler;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using Discount.Grpc;
+global using HealthChecks.UI.Client;
