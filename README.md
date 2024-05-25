@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a project made alongside [mehmetozkaya](https://github.com/mehmetozkaya/EShopMicroservices/commits?author=mehmetozkaya)'s microservices course on Udemy. However a lot of though was put into adding extra choices and flavors on the solutions that the course brings. This is all in .NET 8.
+This is a project made alongside [mehmetozkaya](https://github.com/mehmetozkaya/EShopMicroservices/commits?author=mehmetozkaya)'s microservices course on Udemy. However a lot of thought was put into adding extra choices and flavors on the solutions that the course brings. This is all in .NET 8. This is a full e-commerce platform solution that relies on microservices in order to facilitate purchasing operations.
 
 ## Solution
 
