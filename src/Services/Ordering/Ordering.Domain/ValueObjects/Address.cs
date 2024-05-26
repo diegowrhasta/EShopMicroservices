@@ -10,7 +10,8 @@ public record Address
         string emailAddress,
         string addressLine,
         string country,
-        string state
+        string state,
+        string zipCode
     )
     {
         FirstName = firstName;
@@ -19,6 +20,7 @@ public record Address
         AddressLine = addressLine;
         Country = country;
         State = state;
+        ZipCode = zipCode;
     }
 
     public string FirstName { get; } = default!;
@@ -27,6 +29,7 @@ public record Address
     public string AddressLine { get; } = default!;
     public string Country { get; } = default!;
     public string State { get; } = default!;
+    public string ZipCode { get; } = default!;
 
     public static Address Of(
         string firstName,
@@ -34,12 +37,21 @@ public record Address
         string emailAddress,
         string addressLine,
         string country,
-        string state
+        string state,
+        string zipCode
     )
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(emailAddress);
         ArgumentException.ThrowIfNullOrWhiteSpace(addressLine);
 
-        return new Address(firstName, lastName, emailAddress, addressLine, country, state);
+        return new Address(
+            firstName,
+            lastName,
+            emailAddress,
+            addressLine,
+            country,
+            state,
+            zipCode
+        );
     }
 }
