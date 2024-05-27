@@ -18,6 +18,7 @@ This is a monorepo that holds inside more than 4 microservice projects and 1 Web
   * Grpc service connected to a SQLite database
   * CQRS (MediatR)
   * N-Layer architecture implemented with
+  * Migrations with EF.
 * Ordering.API
   * Restful API connected to a T-SQL database
   * DDD and Clean Code Architecture
