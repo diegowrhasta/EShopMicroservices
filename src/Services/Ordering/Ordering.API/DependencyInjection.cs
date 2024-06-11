@@ -1,4 +1,6 @@
-﻿namespace Ordering.API;
+﻿using System.Reflection;
+
+namespace Ordering.API;
 
 public static class DependencyInjection
 {
@@ -6,7 +8,14 @@ public static class DependencyInjection
         this IServiceCollection services
     )
     {
-        services.AddCarter();
+        services.AddCarter(configurator: c =>
+        {
+            var modules = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.IsAssignableTo(typeof(ICarterModule)))
+                .ToArray();
+            c.WithModules(modules);
+        });
         return services;
     }
 
