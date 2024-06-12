@@ -18,9 +18,7 @@ public class GetOrdersByName : ICarterModule
                         new GetOrdersByNameQuery(orderName)
                     );
 
-                    var response = result.Adapt<IEnumerable<OrderDto>>();
-
-                    return Results.Ok(response);
+                    return Results.Ok(result);
                 }
             )
             .WithName("GetOrdersByName")
