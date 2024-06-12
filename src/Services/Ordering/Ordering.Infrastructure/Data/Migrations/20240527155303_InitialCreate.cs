@@ -65,7 +65,7 @@ namespace Ordering.Infrastructure.Data.Migrations
                     Payment_CardName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Payment_CardNumber = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     Payment_Expiration = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Payment_PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Payment_PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     ShippingAddress_AddressLine = table.Column<string>(type: "nvarchar(180)", maxLength: 180, nullable: false),
                     ShippingAddress_Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ShippingAddress_EmailAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),

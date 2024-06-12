@@ -16,7 +16,7 @@ public class UpdateOrder : ICarterModule
                 {
                     var command = request.Adapt<UpdateOrderCommand>();
 
-                    var result = sender.Send(command);
+                    var result = await sender.Send(command);
 
                     var response = result.Adapt<UpdateOrderResponse>();
 
