@@ -35,4 +35,9 @@ Many libraries were used, mostly to connect to the different databases, but also
 * FluentValidations
 * gRPC
 
-* Technologies utilized to manage to get things up and running: Docker, 
+* Technologies utilized to manage to get things up and running: Docker.
+
+## Design Choices
+
+* Custom Exception Handler that will handle all manners of exceptions based on their type and hydrating an informative and clean json response when an exception is thrown.
+* Health checks in all services that go into checking the healthchecks of their own backing services (databases, caches)
