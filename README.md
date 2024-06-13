@@ -21,9 +21,10 @@ This is a monorepo that holds inside more than 4 microservice projects and 1 Web
   * Migrations with EF.
 * Ordering.API
   * Restful API connected to a T-SQL database
-  * DDD and Clean Code Architecture
+  * DDD and Clean Code Architecture (Ordering.API, Ordering.Domain, Ordering.Application, Ordering.Infrastructure)
   * CQRS (MediatR)
   * Migrations for database Code-First approach
+  * EFC Interceptors to publish integration events after domain events have been acted upon on the Application layer.
 
 * Everything has been orchestrated with docker-compose in order to establish a production-like environment through one simple command
 
@@ -39,5 +40,10 @@ Many libraries were used, mostly to connect to the different databases, but also
 
 ## Design Choices
 
-* Custom Exception Handler that will handle all manners of exceptions based on their type and hydrating an informative and clean json response when an exception is thrown.
-* Health checks in all services that go into checking the healthchecks of their own backing services (databases, caches)
+* **Custom Exception Handler** that will handle all manners of exceptions based on their type and hydrating an informative and clean json response when an exception is thrown.
+* **Health checks** in all services that go into checking the healthchecks of their own backing services (databases, caches)
+* **Pipeline behaviors** in the form of behaviors injected into the CQRS Handler pipelines. ValidationBehavior (to validate payloads through FluentValidations), LoggingBehavior (to log all the queries and commands that are being sent to the microservice).
+
+## Extra notes
+
+GitHub's dependabot has been configured in this repository in order to check for updates to packages and stay up to date.
