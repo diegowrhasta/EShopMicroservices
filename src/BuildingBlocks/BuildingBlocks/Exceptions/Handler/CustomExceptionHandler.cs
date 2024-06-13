@@ -62,6 +62,7 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
             Instance = context.Request.Path
         };
 
+        problemDetails.Extensions.Add("verb", context.Request.Method);
         problemDetails.Extensions.Add("traceId", context.TraceIdentifier);
 
         if (exception is ValidationException validationException)
