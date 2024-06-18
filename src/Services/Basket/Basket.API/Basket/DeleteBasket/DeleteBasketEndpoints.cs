@@ -22,7 +22,7 @@ public class DeleteBasketEndpoints : ICarterModule
             .Produces<DeleteBasketResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Delete Basket")
-            .WithDescription("DeleteBasket");
+            .WithDescription("Delete Basket");
         ;
     }
 }

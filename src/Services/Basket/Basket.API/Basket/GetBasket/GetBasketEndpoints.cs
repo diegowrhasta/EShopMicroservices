@@ -22,7 +22,7 @@ public class GetBasketEndpoints : ICarterModule
             .Produces<GetBasketResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Get Basket by User Name")
-            .WithDescription("GetBasketByUserName");
+            .WithDescription("Get BasketBy User Name");
         ;
     }
 }

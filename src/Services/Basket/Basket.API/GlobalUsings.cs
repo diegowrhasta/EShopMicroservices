@@ -13,5 +13,5 @@ global using BuildingBlocks.Exceptions.Handler;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 global using Discount.Grpc;
 global using HealthChecks.UI.Client;
-global using System.Reflection;
 global using BuildingBlocks.Messaging.MassTransit;
+global using Basket.API.Dtos;
