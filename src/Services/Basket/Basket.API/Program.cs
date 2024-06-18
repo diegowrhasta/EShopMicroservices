@@ -13,7 +13,10 @@ builder.Services.AddMediatR(config =>
 });
 builder.Services.AddCarter(configurator: c =>
 {
-    var modules = assembly.GetTypes().Where(t => t.IsAssignableTo(typeof(ICarterModule))).ToArray();
+    var modules = assembly
+        .GetTypes()
+        .Where(t => t.IsAssignableTo(typeof(ICarterModule)))
+        .ToArray();
     c.WithModules(modules);
 });
 
@@ -37,10 +40,14 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 // Grpc Services
 builder
-    .Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
-    {
-        options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
-    })
+    .Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
+        options =>
+        {
+            options.Address = new Uri(
+                builder.Configuration["GrpcSettings:DiscountUrl"]!
+            );
+        }
+    )
     .ConfigurePrimaryHttpMessageHandler(() =>
     {
         var handler = new HttpClientHandler
@@ -65,8 +72,14 @@ app.MapCarter();
 app.UseExceptionHandler(options => { });
 app.UseHealthChecks(
     "/health",
-    new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse }
+    new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    }
 );
+
+// Async Communication Services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 // Configure the HTTP request pipeline.
 
