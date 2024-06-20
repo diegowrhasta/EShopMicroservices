@@ -1,5 +1,12 @@
-﻿namespace Ordering.Application.Orders.EventHandlers.Integration;
+﻿using BuildingBlocks.Messaging.Events;
+using MassTransit;
 
-public class BasketCheckoutEventHandler
+namespace Ordering.Application.Orders.EventHandlers.Integration;
+
+public class BasketCheckoutEventHandler : IConsumer<BasketCheckoutEvent>
 {
+    public Task Consume(ConsumeContext<BasketCheckoutEvent> context)
+    {
+        throw new NotImplementedException();
+    }
 }
