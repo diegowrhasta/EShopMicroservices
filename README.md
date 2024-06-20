@@ -7,6 +7,10 @@ This is a project made alongside [mehmetozkaya](https://github.com/mehmetozkaya/
 ## Solution
 
 This is a monorepo that holds inside more than 4 microservice projects and 1 Web App made with Blazor. This is a brief description of what they do:
+* BuildingBlocks
+  * This is shared project that exposes abstract classes, interfaces and dependency injection extensions that can be reused across all the other microservices.
+* BuildingBlocks.Messaging
+  * There is asynchronous communication between a subset of microservices, and so abstractions and interfaces that work with MassTransit's RabbitMQ connector are in here so that they can be reused
 * Catalog.API
   * Restful API with Marten in order to make a hybrid Transactional-Document database
   * Vertical Slice Architecture applied alongside CQRS (MediatR)
@@ -14,6 +18,7 @@ This is a monorepo that holds inside more than 4 microservice projects and 1 Web
   * Restful API with Marten in order to make a hybrid Transactional-Document database
   * Redis Cache implemented through Decorator and Cache Aside patterns
   * Vertical Slice Architecture applied alongside CQRS (MediatR)
+  * MassTransit implementation in order to publish events to RabbitMQ
 * Discount.API
   * Grpc service connected to a SQLite database
   * CQRS (MediatR)
@@ -25,6 +30,7 @@ This is a monorepo that holds inside more than 4 microservice projects and 1 Web
   * CQRS (MediatR)
   * Migrations for database Code-First approach
   * EFC Interceptors to publish integration events after domain events have been acted upon on the Application layer.
+  * MassTransit implementation in order to consume events out of RabbitMQ
 
 * Everything has been orchestrated with docker-compose in order to establish a production-like environment through one simple command
 
@@ -35,6 +41,7 @@ Many libraries were used, mostly to connect to the different databases, but also
 * Carter
 * FluentValidations
 * gRPC
+* MassTransit
 
 * Technologies utilized to manage to get things up and running: Docker.
 
