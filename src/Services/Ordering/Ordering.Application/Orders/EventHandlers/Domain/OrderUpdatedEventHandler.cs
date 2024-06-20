@@ -1,10 +1,10 @@
-﻿namespace Ordering.Application.Orders.EventHandlers;
+﻿namespace Ordering.Application.Orders.EventHandlers.Domain;
 
-public class OrderCreatedEventHandler(ILogger<OrderCreatedEventHandler> logger)
-    : INotificationHandler<OrderCreatedEvent>
+public class OrderUpdatedEventHandler(ILogger<OrderUpdatedEvent> logger)
+    : INotificationHandler<OrderUpdatedEvent>
 {
     public Task Handle(
-        OrderCreatedEvent notification,
+        OrderUpdatedEvent notification,
         CancellationToken cancellationToken
     )
     {
