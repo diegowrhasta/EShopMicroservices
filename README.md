@@ -8,7 +8,7 @@ This is a project made alongside [mehmetozkaya](https://github.com/mehmetozkaya/
 
 This is a monorepo that holds inside more than 4 microservice projects and 1 Web App made with Blazor. This is a brief description of what they do:
 * BuildingBlocks
-  * This is shared project that exposes abstract classes, interfaces and dependency injection extensions that can be reused across all the other microservices.
+  * This is shared project that exposes abstract classes, interfaces and dependency injection extensions that can be reused across all the other microservices. DI and base classes for CQRS, Pagination, Exceptions.
 * BuildingBlocks.Messaging
   * There is asynchronous communication between a subset of microservices, and so abstractions and interfaces that work with MassTransit's RabbitMQ connector are in here so that they can be reused
 * Catalog.API
@@ -42,6 +42,7 @@ Many libraries were used, mostly to connect to the different databases, but also
 * FluentValidations
 * gRPC
 * MassTransit
+* Scrutor
 
 * Technologies utilized to manage to get things up and running: Docker.
 
