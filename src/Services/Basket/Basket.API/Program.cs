@@ -61,6 +61,10 @@ builder
 // Cross-Cutting Services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+
+// Async Communication Services
+builder.Services.AddMessageBroker(builder.Configuration);
+
 builder
     .Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
@@ -77,9 +81,6 @@ app.UseHealthChecks(
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
     }
 );
-
-// Async Communication Services
-builder.Services.AddMessageBroker(builder.Configuration);
 
 // Configure the HTTP request pipeline.
 
