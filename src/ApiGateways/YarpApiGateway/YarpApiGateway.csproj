@@ -7,7 +7,16 @@
     <UserSecretsId>cdaee302-99f9-48c3-b02a-9bd33cc5fb52</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.Local.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Local.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
