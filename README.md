@@ -31,6 +31,13 @@ This is a monorepo that holds inside more than 4 microservice projects and 1 Web
   * Migrations for database Code-First approach
   * EFC Interceptors to publish integration events after domain events have been acted upon on the Application layer.
   * MassTransit implementation in order to consume events out of RabbitMQ
+* Yarp.Gateway
+  * .NET Core project that will act as the Gateway for the frontend application's requests to all the microservices
+  * This will act as both a reverse proxy and a rate limiter
+  * It uses configurations at the `appsettings.json` level for its docker deployment and for local development it has `appsettings.Local.json` overrides.
+* Shopping.WebApp
+  * This is a frontend with views and styling based on the (Run Aspnetcore Basics)[https://github.com/aspnetrun/run-aspnetcore-basics] repository, a Razor Pages project.
+  * This makes use of Refit as a library for type safe calls made from a client through HTTP to a backend. In this instance it will call the Gateway's routes.
 
 * Everything has been orchestrated with docker-compose in order to establish a production-like environment through one simple command
 
@@ -43,6 +50,8 @@ Many libraries were used, mostly to connect to the different databases, but also
 * gRPC
 * MassTransit
 * Scrutor
+* Refit
+* Yarp
 
 * Technologies utilized to manage to get things up and running: Docker.
 
