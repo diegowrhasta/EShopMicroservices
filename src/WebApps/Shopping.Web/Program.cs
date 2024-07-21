@@ -1,15 +1,35 @@
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var assembly = Assembly.GetExecutingAssembly();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder
-    .Services.AddRefitClient<ICatalogService>()
-    .ConfigureHttpClient(c =>
+
+var modules = assembly
+    .GetTypes()
+    .Where(t => t.IsInterface && t.IsAssignableTo(typeof(IRefitService)))
+    .ToArray();
+foreach (var module in modules)
+{
+    var refitClientType = typeof(IRefitService).Assembly.GetType(
+        module.FullName!
+    );
+    if (refitClientType is null)
     {
-        c.BaseAddress = new Uri(
-            builder.Configuration["ApiSettings:GatewayAddress"]!
-        );
-    });
+        continue;
+    }
+
+    builder
+        .Services.AddRefitClient(refitClientType)
+        .ConfigureHttpClient(c =>
+        {
+            c.BaseAddress = new Uri(
+                builder.Configuration["ApiSettings:GatewayAddress"]!
+            );
+        });
+}
 
 var app = builder.Build();
 

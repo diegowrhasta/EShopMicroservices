@@ -1,6 +1,6 @@
 ﻿namespace Shopping.Web.Services;
 
-public interface ICatalogService
+public interface ICatalogService : IRefitService
 {
     [Get("/catalog-service/products?pageNumber={pageNumber}&pageSize={pageSize}")]
     Task<GetProductsResponse> GetProducts(int? pageNumber = 1, int? pageSize = 10);
